@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIGA APE</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #000000; /* Black background */
+            --bg-secondary: #001133; /* Dark blue for sections */
+            --text-primary: #00FFFF; /* Cyan main text */
+            --accent-blue: #0000FF; /* Blue accents */
+            --accent-green: #00FF00; /* Green glow for eyes/effects */
+            --shadow-glow: 0 0 10px var(--accent-green), 0 0 20px var(--accent-blue);
+            --border-pixel: 2px dotted var(--accent-blue);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Press Start 2P', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.2;
+            overflow-x: hidden;
+            image-rendering: pixelated;
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: var(--bg-primary);
+            overflow: hidden;
+        }
+        .hero-logo {
+            width: 500px;
+            height: 500px ;
+            border: var(--border-pixel);
+            box-shadow: var(--shadow-glow);
+            margin-bottom: 10px;
+            image-rendering: pixelated;
+        }
+        .hero img {
+            max-width: 60%;
+            height: auto;
+            border: var(--border-pixel);
+            box-shadow: var(--shadow-glow);
+            margin-bottom: 20px;
+            image-rendering: pixelated;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 0 0 10px;
+            color: var(--accent-green);
+            text-shadow: var(--shadow-glow);
+        }
+        .hero .subtitle {
+            font-size: clamp(1rem, 4vw, 2rem);
+            margin: 0 0 20px;
+            color: var(--accent-blue);
+            text-shadow: 0 0 5px var(--accent-blue);
+        }
+        .hero p.tagline {
+            font-size: 0.8rem;
+            margin: 0;
+            opacity: 0.8;
+            word-break: break-word;
+        }
+        .features {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .feature {
+            text-align: center;
+            padding: 40px 20px;
+            border: var(--border-pixel);
+            background: var(--bg-secondary);
+            transition: all 0.3s ease;
+            position: relative;
+            image-rendering: pixelated;
+        }
+        .feature:hover {
+            border-color: var(--accent-green);
+            box-shadow: var(--shadow-glow);
+            transform: scale(1.05);
+        }
+        .feature h2 {
+            font-size: 1rem;
+            color: var(--accent-green);
+            margin: 0 0 15px;
+            text-shadow: 0 0 5px var(--accent-green);
+        }
+        .feature p {
+            font-size: 0.7rem;
+            opacity: 0.9;
+        }
+        .ape-section {
+            padding: 60px 20px;
+            text-align: center;
+            background: var(--bg-secondary);
+        }
+        .ape-section h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--accent-blue);
+            margin-bottom: 40px;
+            text-shadow: var(--shadow-glow);
+        }
+        .ape-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .ape-item {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            padding: 15px 10px;
+            border: var(--border-pixel);
+            background: var(--accent-blue);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-shadow: 1px 1px 0 var(--bg-primary);
+        }
+        .ape-item:nth-child(odd) { animation-delay: 0.2s; }
+        .ape-item:nth-child(even) { animation-delay: 0.4s; }
+        .ape-item:hover {
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            transform: scale(1.1);
+            box-shadow: var(--shadow-glow);
+        }
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+        .ape-item {
+            animation: glitch 2s infinite;
+        }
+        .cta {
+            padding: 60px 20px;
+            text-align: center;
+            background: var(--bg-primary);
+        }
+        .cta h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 20px;
+            color: var(--accent-green);
+            text-shadow: var(--shadow-glow);
+        }
+        .cta p {
+            font-size: 0.8rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .cta button {
+            font-size: 1rem;
+            font-family: 'Press Start 2P', monospace;
+            padding: 20px 40px;
+            background: var(--accent-blue);
+            color: var(--text-primary);
+            border: 3px dotted var(--accent-green);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: var(--shadow-glow);
+            image-rendering: pixelated;
+            margin-right: 20px;
+        }
+        .cta button:hover {
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            transform: scale(1.05);
+        }
+        .ca-section {
+            margin-top: 20px;
+            padding: 10px;
+            background: var(--bg-secondary);
+            border: var(--border-pixel);
+            border-radius: 0;
+            max-width: 600px;
+            margin: 0 auto;
+            word-break: break-all;
+        }
+        .ca-section p {
+            font-size: 0.7rem;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+        .ca-section p:hover {
+            color: var(--accent-green);
+        }
+        .social-links {
+            margin-top: 20px;
+        }
+        .social-links a {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--accent-green);
+            text-shadow: var(--shadow-glow);
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--bg-secondary);
+            border-top: var(--border-pixel);
+            font-size: 0.7rem;
+            opacity: 0.8;
+        }
+        /* Mobile tweaks */
+        @media (max-width: 768px) {
+            .features { gap: 30px; grid-template-columns: 1fr; }
+            .ape-grid { grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); }
+            .cta button { margin-bottom: 10px; margin-right: 0; }
+            .ca-section { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <img class="hero-logo" src="logo.png" alt="GIGA APE Logo" />
+        <h1>GIGA APE</h1>
+        <p class="subtitle">BUY APE YOU COWARD! (BAYC)</p>
+        <!-- <p class="tagline">NO ROADMAP FAIRLAUNCH NO ALLOCATION PURE NARRATIVE APE FEST</p> -->
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <h2>NO ROADMAP</h2>
+            <p>APE APE APE APE APE APE APE APE APE APE APE APE APE APE APE</p>
+        </div>
+        <div class="feature">
+            <h2>FAIRLAUNCH</h2>
+            <p>APE APE APE APE APE APE APE APE APE APE APE APE APE APE APE</p>
+        </div>
+        <div class="feature">
+            <h2>NO ALLOCATION</h2>
+            <p>APE APE APE APE APE APE APE APE APE APE APE APE APE APE APE</p>
+        </div>
+    </section>
+
+    <section class="ape-section">
+        <h2>APE APE APE APE</h2>
+        <div class="ape-grid">
+            <div class="ape-item">APE</div>
+            <div class="ape-item">APE</div>
+            <div class="ape-item">APE</div>
+            <div class="ape-item">APE</div>
+            <div class="ape-item">APE</div>
+            <div class="ape-item">APE</div>
+            <div class="ape-item">APE</div>
+            <div class="ape-item">APE</div>
+            <div class="ape-item">APE</div>
+            <div class="ape-item">APE</div>
+            <div class="ape-item">APE</div>
+            <div class="ape-item">APE</div>
+            <div class="ape-item">APE</div>
+            <div class="ape-item">APE</div>
+            <div class="ape-item">APE</div>
+            <div class="ape-item">APE</div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>JOIN THE GIGA APE</h2>
+        <p>SOLANA DEX LAUNCH TELEGRAM X FRENZY</p>
+        <button onclick="window.open('https://dexscreener.com/solana/YOUR_TOKEN_ADDRESS', '_blank')"><i class="fas fa-shopping-cart"></i> BUY NOW</button>
+        <div class="ca-section">
+            <p id="ca-text" onclick="copyCA()">CA: SOON</p>
+        </div>
+        <div class="social-links">
+            <a href="https://x.com/YOUR_HANDLE" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 GIGA APE. ALL RIGHTS? APE.</p>
+    </footer>
+
+    <script>
+        function copyCA() {
+            const caText = document.getElementById('ca-text');
+            navigator.clipboard.writeText(caText.textContent).then(() => {
+                caText.style.color = 'var(--accent-green)';
+                setTimeout(() => {
+                    caText.style.color = 'var(--text-primary)';
+                }, 1000);
+            });
+        }
+
+        // Glitch animation on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            hero.style.filter = `hue-rotate(${scrolled * 0.1}deg)`;
+        });
+
+        // APE items glitch on click
+        document.querySelectorAll('.ape-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.animation = 'glitch 0.1s infinite';
+                setTimeout(() => {
+                    item.style.animation = 'none';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
